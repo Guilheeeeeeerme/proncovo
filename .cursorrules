@@ -1,0 +1,87 @@
+# Cursor Rules for pronCOVO Project
+
+## Project Context
+This is the pronCOVO project - a companion app for intelligent walking that provides contextual explanations and destination suggestions based on geographic location and maps, using user-provided AI.
+
+## Key Documents
+- SPEC.md - Complete requirements document (DR/PRD)
+- PLANO_IMPLEMENTACAO.md - Detailed implementation plan in 11 stages
+- agents.md - Specific instructions for AI agents
+- PROGRESS.md - Progress monitoring for each stage
+
+## Critical Principles
+
+### Privacy by Design
+- NEVER store location history
+- NEVER store conversations or interactions
+- NEVER store personal preferences
+- Use only volatile memory (runtime variables)
+- Clean data after each session
+
+### Backend Architecture
+- Backend does NOT maintain user state
+- Backend does NOT provide AI tokens - only orchestrates calls
+- All AI calls use USER tokens
+- Backend is primarily a proxy/orchestrator
+
+### Simplicity
+- Interface operable with one hand
+- Large, accessible buttons
+- Minimum necessary interactions
+- App usable without tutorial
+
+## Code Style
+
+### TypeScript
+- Always use explicit types
+- Avoid `any` - use `unknown` if necessary
+- Define interfaces for complex objects
+
+### Naming Conventions
+- Files: camelCase for services, PascalCase for components
+- Components: PascalCase (e.g., `MapView.tsx`)
+- Hooks: camelCase with `use` prefix (e.g., `useLocation.ts`)
+- Services: camelCase (e.g., `auth.service.ts`)
+
+### File Structure
+Follow the structure defined in agents.md:
+- Backend: `api/src/{module}/{module}.{type}.ts`
+- App: `app/src/{category}/{name}.tsx` or `.ts`
+
+## When Implementing
+
+1. Always check PROGRESS.md to see current status
+2. Read the relevant section in PLANO_IMPLEMENTACAO.md
+3. Verify requirements in SPEC.md
+4. Follow the checklist in PROGRESS.md
+5. Update PROGRESS.md after completing work
+
+## Testing Requirements
+- Unit tests for all services
+- Integration tests for critical endpoints
+- Minimum 70% code coverage
+- Test on real devices before deployment
+
+## Error Handling
+- Always return structured errors
+- Display user-friendly messages
+- Log technical details only in development mode
+- Implement retry logic where appropriate
+
+## Security
+- HTTPS mandatory
+- Validate all inputs
+- Never store credentials
+- Use secure storage for tokens (Keychain/Keystore)
+- Implement rate limiting
+
+## Dependencies
+- Backend: NestJS, TypeScript, class-validator
+- App: React Native, TypeScript, react-native-maps, React Navigation
+- Always check if dependencies are compatible before adding
+
+## Commit Messages
+- Use descriptive messages
+- Format: `feat: description` or `fix: description`
+- Reference stage when relevant: `feat(etapa-4): implementa explicação de localização`
+
